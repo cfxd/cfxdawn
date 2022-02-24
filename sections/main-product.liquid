@@ -391,8 +391,8 @@
                                   {% endif %}
                               {% endcase %}
                             {% endfor %}
-                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
-                              {{ value }}{% if option_disabled %} [{{ 'products.product.unavailable' | t }}]{% endif %}
+                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}{% if option_disabled and 'disabled' == block.settings.select_soldout_type %} disabled{% endif %}>
+                              {{ value }}{% if option_disabled and 'append' == block.settings.select_soldout_type %} [{{ 'products.product.unavailable' | t }}]{% endif %}
                             </option>
                           {%- endfor -%}
                         </select>
@@ -758,6 +758,26 @@
           ],
           "default": "button",
           "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
+        },
+        {
+          "type": "select",
+          "id": "select_soldout_type",
+          "options": [
+            {
+              "value": "none",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.select_soldout_type.options__1.label"
+            },
+            {
+              "value": "disabled",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.select_soldout_type.options__2.label"
+            },
+            {
+              "value": "append",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.select_soldout_type.options__3.label"
+            }
+          ],
+          "default": "none",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.select_soldout_type.label"
         }
       ]
     },
