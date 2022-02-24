@@ -199,7 +199,9 @@ fieldset.product-form__input .form__label {
   cursor: pointer;
   position: relative;
 }
-
+.product-form__input input[type='radio'].disabled + label {
+  opacity: 0.5;
+}
 .product-form__input input[type='radio'] + label:before {
   content: '';
   position: absolute;
